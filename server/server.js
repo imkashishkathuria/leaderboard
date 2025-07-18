@@ -7,6 +7,7 @@ import leaderboardRoutes from './routes/leaderboard.js'
 dotenv.config();
 const app = express();
 app.use(cors());
+app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
@@ -15,6 +16,10 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 app.use("/api", leaderboardRoutes);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
