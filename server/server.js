@@ -3,6 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose';
 import leaderboardRoutes from './routes/leaderboard.js'
+import path from 'path'
 
 dotenv.config();
 const app = express();
